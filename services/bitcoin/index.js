@@ -2,17 +2,20 @@ const {generateWallet} = require('./functions/generate_wallet');
 const {getBalance} = require('./functions/get_balance');
 const {sendMoney} = require('./functions/send_money');
 const wallet = generateWallet();
-const privateKey = 'KzNUg7isY3WQkDihM2S71uVrL3Er8s6j1GMbg3btySAt9GrEyQQx';
-const address = 'n14s3bnPPtMNPHcuA6eAJGRFwiMbkeDd8x';
-const to_address_key= 'Kz5n51hQhR9BhLGsFQpjbpq2ayhs3v4QWtHxKMJm5Rh9rK7Y8iT6';
-const to_address= 'mzasvQoroGVFiPwEaZ8NyEWxt9QAPUy3Ju';
+console.log(wallet)
+process.exit();
+const privateKey = 'cPSS7EaSD3J5H5eDXtxa9X1jiCMdmkDJj6AzUAToDmVycT5iutPL';
+const address = 'mxGMBuZgS3ysHkRBySVmZZjLS3iR1j5dqi';
+const to_address_key= 'cPfj61NnbRMkXzK8PbQ4ntE8jWJHCQxDUxpUrm2gdBdFsW73wRNz';
+const to_address= 'miUeExWuZjdTZu4bguwih1d818m51aKfyN';
 const bitcoin = require('bitcoinjs-lib')
+const wif = require('wif');
 //getBalance(address).then(result => console.log(result));
 /*
 sendMoney(privateKey,address,'mzasvQoroGVFiPwEaZ8NyEWxt9QAPUy3Ju',0.002)
 .catch(err => console.log(err))
 .then(result => console.log(result))
 */
-console.log(bitcoin.networks.testnet.wif)
-const keyPair = bitcoin.ECPair.fromWIF(privateKey, bitcoin.networks.testnet);
-console.log(keyPair)
+const keyPair = bitcoin.ECPair.fromWIF(wallet.privateKey, bitcoin.networks.testnet);
+const add =bitcoin.payments.p2pkh({pubkey: keyPair.publicKey, network:bitcoin.networks.testnet}).address
+console.log(add)
