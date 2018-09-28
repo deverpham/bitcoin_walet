@@ -204,7 +204,7 @@ function sendTransaction (options) {
 		if (fee > amtSatoshi) throw "BitCoin amount must be larger than the fee. (Ideally it should be MUCH larger)";
 		tx.addOutput(to, amtSatoshi - fee);
 		if (change > 0) tx.addOutput(from, change);
-		var keyPair = bitcoin.ECPair.fromWIF(options.privKeyWIF, bitcoinNetwork);
+		var keyPair = bitcoin.ECPair.fromWIF(options.privKeyWIF, bitcoinNetwork.networks.testnet);
 		for (var i = 0; i < ninputs; i++) {
 			tx.sign(i, keyPair);
 		}

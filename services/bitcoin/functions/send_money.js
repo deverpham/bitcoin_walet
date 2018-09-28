@@ -5,7 +5,8 @@ function sendMoney(privateKey,from, to, amount) {
         to,
         privKeyWIF: privateKey,
         btc: amount,
-        network :  process.env.NODE_ENV == 'prod'? 'mainnet': 'testnet'
+        network :  process.env.NODE_ENV == 'prod'? 'mainnet': 'testnet',
+        dryrun: true
     })
 }
 module.exports = {sendMoney}
