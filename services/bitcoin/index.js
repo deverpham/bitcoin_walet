@@ -10,8 +10,8 @@ const to_address= 'miUeExWuZjdTZu4bguwih1d818m51aKfyN';
 const bitcoin = require('bitcoinjs-lib')
 const wif = require('wif');
 getBalance(address).then(result => console.log(result));
-/*
-sendMoney(privateKey,address,'mzasvQoroGVFiPwEaZ8NyEWxt9QAPUy3Ju',0.002)
+
+sendMoney(privateKey,address,'miUeExWuZjdTZu4bguwih1d818m51aKfyN',0.02)
 .catch(err => console.log(err))
 .then(result => console.log(result))
-*/
+

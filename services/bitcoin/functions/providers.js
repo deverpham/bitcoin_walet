@@ -168,7 +168,7 @@ function sendTransaction (options) {
 	if (options.utxoProvider == null) options.utxoProvider = providers.utxo[options.network].default;
 	if (options.pushtxProvider == null) options.pushtxProvider = providers.pushtx[options.network].default;
 	if (options.dryrun == null) options.dryrun = false;
-	if (options.minConfirmations == null) options.minConfirmations = 6;
+	if (options.minConfirmations == null) options.minConfirmations = 1;
 
 	var from = options.from;
 	var to = options.to;
@@ -205,7 +205,7 @@ function sendTransaction (options) {
 		if (fee > amtSatoshi) throw "BitCoin amount must be larger than the fee. (Ideally it should be MUCH larger)";
 		tx.addOutput(to, amtSatoshi - fee);
 		if (change > 0) tx.addOutput(from, change);
-		var keyPair = bitcoin.ECPair.fromWIF(options.privKeyWIF, bitcoinNetwork.networks.testnet);
+		var keyPair = bitcoin.ECPair.fromWIF(options.privKeyWIF, bitcoinNetwork);
 		for (var i = 0; i < ninputs; i++) {
 			tx.sign(i, keyPair);
 		}
