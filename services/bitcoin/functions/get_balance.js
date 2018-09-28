@@ -4,4 +4,5 @@ function getBalance(address) {
         network: process.env.NODE_ENV == 'prod'? 'mainnet': 'testnet'
     })
 }
+
 module.exports = {getBalance};

@@ -220,5 +220,6 @@ function sendTransaction (options) {
 module.exports = {
 	providers: providers,
 	getBalance: getBalance,
+	getFees: getFees,
 	sendTransaction: sendTransaction
 }
