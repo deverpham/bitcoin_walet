@@ -1,6 +1,6 @@
 var bitcoin = require('bitcoinjs-lib');
 var request = require('superagent');
-
+const CONFIG = require('../../../config/config')
 var BITCOIN_DIGITS = 8;
 var BITCOIN_SAT_MULT = Math.pow(10, BITCOIN_DIGITS);
 
@@ -132,7 +132,8 @@ providers.pushtx.testnet.default = providers.pushtx.testnet.blockcypher;
 
 function getBalance (addr, options) {
 	if (options == null) options = {};
-	if (options.network == null) options.network = "mainnet";
+	//if (options.network == null) options.network = "mainnet";
+	if (options.network == null) options.network = CONFIG.networkString;
 	if (options.balanceProvider == null) options.balanceProvider = providers.balance[options.network].default;
 
 	return options.balanceProvider(addr).then(function (balSat) {
@@ -161,7 +162,7 @@ function sendTransaction (options) {
 	if (options.privKeyWIF == null) throw "Must specify the wallet's private key in WIF format.";
 
 	//Optionals
-	if (options.network == null) options.network = 'mainnet';
+	if (options.network == null) options.network = CONFIG.networkString;
 	if (options.fee == null) options.fee = 'fastest';
 	if (options.feesProvider == null) options.feesProvider = providers.fees[options.network].default;
 	if (options.utxoProvider == null) options.utxoProvider = providers.utxo[options.network].default;
