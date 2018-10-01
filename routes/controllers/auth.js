@@ -22,12 +22,14 @@ class AuthController {
                     const user = new UserModel(userData);
                     user.save()
                     .then(result => {
-                        resolve(Object.assign({}, {
-                            email: result.email,
+                        const user = {
                             id: result.userid,
+                            email: result.email,
                             wallet: result.wallet,
                             phonenumber: result.phonenumber
-                        }));
+                        };
+                        user.token = jwtService.pack(user);
+                        resolve(Object.assign({}, user));
                     })
                     .catch(err => reject(err))
                 } else {
@@ -65,9 +67,6 @@ class AuthController {
             })
         })
     }
-    sign(req, res, next) {
-        return jwtService.checkUser
-      }
     
 }
 module.exports = new AuthController();

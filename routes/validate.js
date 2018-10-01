@@ -1,4 +1,7 @@
 const validate = require('express-validation');
+validate.options({
+    status: 422
+})
 const joi = require('joi');
 const Validation = {
     "/register" : {

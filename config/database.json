@@ -1,7 +1,5 @@
 {
     "port": 27017,
     "host": "localhost",
-    "username": "root",
-    "password": "root",
-    "database": "bitcoin-tests"
+    "database": "bitcoin-prod"
 }
