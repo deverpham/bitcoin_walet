@@ -1,15 +1,18 @@
-const express = require('express');
-const app = express();
+const app = require('express')();
 const Routes = require('./routes/routes');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const {server} = require('./config/config')
+// Import server config
+const { server } = require('./config/config')
+// Support json
 app.use(bodyParser.json());
+// Support : form/urlencoded
+app.use(bodyParser.urlencoded());
+// Enable cross-origin for all domain
 app.use(cors({
     origin: '*'
 }))
-app.use(bodyParser.urlencoded());
+// Load Router
 app.use(Routes);
-app.listen(server.port, () => {
-    console.log('app started');
-})
+// Start app
+app.listen(server.port, console.log('server start successfully')) 
